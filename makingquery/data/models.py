@@ -18,8 +18,10 @@ class Entry(models.Model):
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
     headline = models.CharField(max_length=255)
     body_text = models.TextField()
-    pub_date = models.DateField()
-    mod_date = models.DateField()
+    pub_date = models.DateField(auto_now_add=True)
+    # 데이터베이스에 최초 저장 시, 현재 시가능ㄹ 기준으로 저장
+    mod_date = models.DateField(auto_now=True)
+    #수행 될 시간에 현재 시간을 저장
     authors = models.ManyToManyField(Author)
     number_of_comments = models.IntegerField()
     number_of_pingbacks = models.IntegerField()
